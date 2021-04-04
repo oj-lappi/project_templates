@@ -8,6 +8,9 @@ srcdir=src
 main_file=$(srcdir)/$(main_filename)
 sources=$(wildcard $(srcdir)/*.cpp)
 
+objects=$(subst $(srcdir)/, $(build_dir)/, $(sources:.cpp=.o))
+object_deps=$(subst $(srcdir)/, $(build_dir)/, $(sources:.cpp=.d))
+
 binary_name=out.a
 build_dir=build
 build_target=$(build_dir)/$(binary_name)
@@ -18,13 +21,21 @@ all : $(build_target)
 clean :
 	rm -rf $(build_dir)/*
 
-include $(subst $(srcdir)/, $(build_dir)/, $(sources:.cpp=.d))
-
-$(build_target) : $(main_file) 
+$(build_target) : $(objects)
 	$(CXX) -o $@ -I$(srcdir) $<
+
+$(build_dir)/%.o: $(srcdir)/%.cpp
+	$(CXX) -c -o $@ -I$(srcdir) $<
 
 $(build_dir)/%.d: $(srcdir)/%.cpp
 	@set -e; rm -f $@; \
-	$(CXX) -M $(CPPFLAGS) $< > $@.$$$$; \
-	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	$(CXX) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,$(build_dir)/\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
+
+include $(object_deps)
+
+.PHONY: test
+test:
+	./$(build_target)
+
