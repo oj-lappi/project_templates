@@ -3,17 +3,22 @@ CXX ?= g++
 
 SHELL=/bin/sh
 
-main_filename=main.cpp
 srcdir=src
-main_file=$(srcdir)/$(main_filename)
+build_dir=build
+
 sources=$(wildcard $(srcdir)/*.cpp)
+main_filename=main.cpp
+main_file=$(srcdir)/$(main_filename)
 
 objects=$(subst $(srcdir)/, $(build_dir)/, $(sources:.cpp=.o))
 object_deps=$(subst $(srcdir)/, $(build_dir)/, $(sources:.cpp=.d))
 
 binary_name=out.a
-build_dir=build
 build_target=$(build_dir)/$(binary_name)
+
+CPPFLAGS=-g
+include_dirs= -Iinclude -Isrc
+ALL_CPPFLAGS=$(CPPFLAGS) $(include_dirs)
 
 all : $(build_target)
 
@@ -22,14 +27,14 @@ clean :
 	rm -rf $(build_dir)/*
 
 $(build_target) : $(objects)
-	$(CXX) -o $@ -I$(srcdir) $<
+	$(CXX) -o $@ $(ALL_CPPFLAGS) $(objects)
 
 $(build_dir)/%.o: $(srcdir)/%.cpp
-	$(CXX) -c -o $@ -I$(srcdir) $<
+	$(CXX) -c -o $@ $(ALL_CPPFLAGS) $<
 
 $(build_dir)/%.d: $(srcdir)/%.cpp
 	@set -e; rm -f $@; \
-	$(CXX) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	$(CXX) -MM $(ALL_CPPFLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,$(build_dir)/\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
 
