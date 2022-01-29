@@ -1,0 +1,31 @@
+---
+Checks: >
+    *,
+    -fuchsia-*,
+    -google-*,
+    -zircon-*,
+    -abseil-*,
+    -llvm*,
+    -hicpp*,
+    -*uppercase-literal-suffix,
+    -modernize-use-trailing-return-type,
+    -cppcoreguidelines-pro-type-vararg,
+    -cppcoreguidelines-pro-bounds-constant-array-index
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+FormatStyle: none
+CheckOptions:
+    - key: cppcoreguidelines-pro-type-member-init.IgnoreArrays
+      value: true
+    - key: readability-identifier-naming.NamespaceCase
+      value: lower_case
+    - key: readability-identifier-naming.ClassCase
+      value: CamelCase
+    - key: readability-identifier-naming.StructCase
+      value: CamelCase
+    - key: readability-identifier-naming.FunctionCase
+      value: lower_case
+    - key: readability-identifier-naming.VariableCase
+      value: lower_case
+    - key: readability-identifier-naming.GlobalConstantCase
+      value: UPPER_CASE

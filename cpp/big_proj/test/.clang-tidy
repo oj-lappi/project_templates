@@ -1,0 +1,2 @@
+---
+Checks: '-cppcore*,-readability-magic-numbers'

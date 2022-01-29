@@ -1,0 +1,3 @@
+add_executable(serialization_test main.cpp)
+target_link_libraries(serialization_test PRIVATE TestExternal)
+catch_discover_tests(serialization_test)

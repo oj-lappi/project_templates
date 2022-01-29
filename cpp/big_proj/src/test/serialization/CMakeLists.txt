@@ -1,0 +1,4 @@
+add_executable(json_serialization_test main.cpp)
+target_link_libraries(json_serialization_test PRIVATE TestInternal)
+
+catch_discover_tests(json_serialization_test)

@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+    {{project_name}}_dev_unstable:
+        build:
+            context: ./debian_based
+            args:
+                IMAGE: debian:unstable-20211011
+        restart: always
+        volumes:
+            - ..:/{{project_name}}_proj
+            - /home/${SUDO_USER:-$LOGNAME}/.gitconfig:/home/cxx-developer/.gitconfig
+            - /home/${SUDO_USER:-$LOGNAME}/.ssh:/home/cxx-developer/.ssh
+        stdin_open: true
+        tty: true

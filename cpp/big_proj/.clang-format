@@ -1,0 +1,57 @@
+BasedOnStyle: LLVM
+
+# General style settings
+UseTab: Never
+IndentWidth: 4
+ContinuationIndentWidth: 2
+ColumnLimit: 120
+PenaltyBreakAssignment: 4000
+
+# Comments
+AlignTrailingComments: true
+
+# Values
+Cpp11BracedListStyle: true
+
+# Declaration
+AlignConsecutiveDeclarations: AcrossComments
+PointerAlignment: Right
+
+# Assignment
+AlignConsecutiveAssignments: AcrossComments
+SpaceBeforeAssignmentOperators: true
+
+# Blocks
+AllowShortBlocksOnASingleLine: Empty
+
+# Operations
+SpaceAfterCStyleCast: false
+AlignOperands: AlignAfterOperator
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeTernaryOperators: true
+
+# Macros
+IndentPPDirectives: AfterHash
+AlignConsecutiveMacros: true
+
+# Function signatures
+AlwaysBreakAfterReturnType: AllDefinitions
+AlignAfterOpenBracket: true
+BreakBeforeBraces: WebKit
+BinPackParameters: false
+
+# Class signature
+ConstructorInitializerIndentWidth: 2
+BreakConstructorInitializers: BeforeColon
+AllowAllConstructorInitializersOnNextLine: false
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+#after clang-14:
+#PackConstructorInitializers: BinPack
+EmptyLineBeforeAccessModifier: Always
+
+#Templates
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeConceptDeclarations: true
+
+# Misc
+AllowShortCaseLabelsOnASingleLine: true
