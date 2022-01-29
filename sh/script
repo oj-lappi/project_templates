@@ -12,18 +12,24 @@ Usage:
 EOF                                    
 }
 
-#-o i: <- expects argument
-#-o : <- doesn't expect argument
-OPTS=`getopt -o h --long help -n "$name"  -- "$@"`
+#-o f: <- expects argument for f
+#-o h <- doesn't expect argument for h
+OPTS=`getopt -o hf: --long help,file: -n "$name"  -- "$@"`
 if [ $? != 0 ] ; then echo "Failed to parse args" >&2 ; exit 1 ; fi
 
 eval set -- "$OPTS"
+
+file="default"
 
 while true;do
 case "$1" in
 -h|--help)
 	print_usage
 	exit 0
+	;;
+ -f|--file)
+ 	shift
+	file=$1
 	;;
 --)
 	shift
