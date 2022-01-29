@@ -1,24 +1,51 @@
 BasedOnStyle: LLVM
-AlignAfterOpenBracket: true
-AlignConsecutiveAssignments: AcrossComments
-AlignConsecutiveDeclarations: AcrossComments
-AlignConsecutiveMacros: AcrossComments
-AlignOperands: AlignAfterOperator
-AllowShortBlocksOnASingleLine: Always
-AllowShortCaseLabelsOnASingleLine: true
-AlwaysBreakAfterReturnType: AllDefinitions
-BinPackParameters: false
-BreakBeforeBinaryOperators: All
-BreakBeforeTernaryOperators: false
-BreakBeforeBraces: WebKit
-ColumnLimit: 120
-ConstructorInitializerIndentWidth: 2
-ContinuationIndentWidth: 2
-Cpp11BracedListStyle: true
-EmptyLinesBeforeAccessModifier: Always
-IndentPPDirectives: AfterHash
-IndentWidth: 4
-PenaltyBreakAssignment: 4000
-PointerAlignment: Left
-SpaceAfterCStyleCase: true
+
+# General style settings
 UseTab: Never
+IndentWidth: 4
+ContinuationIndentWidth: 2
+ColumnLimit: 120
+PenaltyBreakAssignment: 4000
+
+# Comments
+AlignTrailingComments: true
+
+# Values
+Cpp11BracedListStyle: true
+
+# Declaration
+AlignConsecutiveDeclarations: true
+PointerAlignment: Right
+
+# Assignment
+AlignConsecutiveAssignments: true
+SpaceBeforeAssignmentOperators: true
+
+# Blocks
+AllowShortBlocksOnASingleLine: Always
+
+# Operations
+SpaceAfterCStyleCast: false
+AlignOperands: AlignAfterOperator
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeTernaryOperators: true
+
+# Macros
+IndentPPDirectives: AfterHash
+AlignConsecutiveMacros: true
+
+# Function signatures
+AlwaysBreakAfterReturnType: AllDefinitions
+AlwaysBreakTemplateDeclarations: Yes
+AlignAfterOpenBracket: true
+BreakBeforeBraces: WebKit
+BinPackParameters: false
+
+# Class signature
+ConstructorInitializerIndentWidth: 2
+BreakConstructorInitializers: BeforeColon
+BreakBeforeBraces: WebKit
+EmptyLineBeforeAccessModifier: Always
+
+# Misc
+AllowShortCaseLabelsOnASingleLine: true
