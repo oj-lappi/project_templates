@@ -63,8 +63,8 @@ COPY dotfiles/bashrc /developer_home/dotfiles/.bashrc
 COPY dotfiles/profile /developer_home/dotfiles/.profile
 #COPY config/ /developer_home/config
 
-RUN mkdir /{{profile_name}}_proj
-WORKDIR /{{profile_name}}_proj
+RUN mkdir /{{project_name}}_proj
+WORKDIR /{{project_name}}_proj
 
 COPY ./docker-entrypoint.sh /
 
