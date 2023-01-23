@@ -1,0 +1,6 @@
+#!/bin/bash
+
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+project_dir=$(cd ${script_dir}/.. && pwd)
+
+clang-tidy -p ${project_dir}/build --config-file=${project_dir}/.clang-tidy-naming-only $@

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+project_dir=$(cd ${script_dir}/.. && pwd)
+
+find ${project_dir} -name '*.hpp' -not -path '*3rd_party/*' -o -name '*.h' -o -name '*.cpp' | xargs ./scripts/clang-tidy-naming-convention $@
