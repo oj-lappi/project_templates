@@ -1,0 +1,44 @@
+#!/bin/bash
+
+name={{project_name}}
+
+print_usage(){
+cat << EOF     
+Usage:                      
+        $name [?] ?
+                frobnicate the frobnicee
+        -h, --help
+                prints this help message
+EOF                                    
+}
+
+#-o f: <- expects argument for f
+#-o h <- doesn't expect argument for h
+OPTS=`getopt -o hf: --long help,file: -n "$name"  -- "$@"`
+if [ $? != 0 ] ; then echo "Failed to parse args" >&2 ; exit 1 ; fi
+
+eval set -- "$OPTS"
+
+file="default"
+
+while true;do
+case "$1" in
+-h|--help)
+	print_usage
+	exit 0
+	;;
+ -f|--file)
+ 	shift
+	file=$1
+	;;
+--)
+	shift
+	break
+	;;
+*)
+	break
+	;;
+esac
+shift
+done
+
