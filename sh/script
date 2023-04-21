@@ -9,7 +9,7 @@ Usage:
                 frobnicate the frobnicee
         -h, --help
                 prints this help message
-EOF                                    
+EOF
 }
 
 #-o f: <- expects argument for f
