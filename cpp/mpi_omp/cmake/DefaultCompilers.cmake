@@ -1,0 +1,8 @@
+if(NOT DEFINED CXX AND NOT DEFINED CMAKE_CXX_COMPILER)
+	find_program(EIRON_CLANG_PREFERENCE clang++)
+	if (EIRON_CLANG_PREFERENCE)
+		message(NOTICE "!! No CXX compiler preference indicated")
+		message(NOTICE "!!  -> using clang++ (${EIRON_CLANG_PREFERENCE}) as CXX compiler")
+		set(CMAKE_CXX_COMPILER clang++)
+	endif()
+endif()
