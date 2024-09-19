@@ -3,6 +3,7 @@ benchmark+fmt
 big_proj
 big_proj_2023
 cmake_proj
+ffs
 make_proj
 godot
 simple
