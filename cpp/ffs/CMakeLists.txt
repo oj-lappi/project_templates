@@ -35,8 +35,7 @@ set(DOWNLOAD AUTO CACHE STRING
 set_property(CACHE DOWNLOAD PROPERTY STRINGS NEVER AUTO ALWAYS)
 
 set(UPDATE NEVER CACHE STRING
-    "Policy for updating dependencies, one of: NEVER, ALWAYS."
-    " ALWAYS is useful when working on a dependency at the same time (e.g. charon)")
+    "Policy for updating dependencies, one of: NEVER, ALWAYS. ALWAYS is useful when working on a dependency at the same time (e.g. charon)")
 set_property(CACHE UPDATE PROPERTY STRINGS NEVER ALWAYS)
 
 #[=[ FFS BOILERPLATE ]=]
@@ -94,6 +93,8 @@ set(DOWNLOAD_URL_CHARON
 #[=[ charon : MPI communication and utility library ]=]
 ffs_declare_external_pkg(charon
     REQUIRED
+    find_package_VERSION
+      0.0.1
     GIT_REPOSITORY
       ${DOWNLOAD_URL_CHARON}
     CMAKE_ARGS
@@ -104,6 +105,8 @@ ffs_declare_external_pkg(charon
     DEPENDENCIES
       MPI
     EP_ARGS
+      GIT_TAG
+        v0.0.1
       INSTALL_COMMAND
         ":"
 )
@@ -121,3 +124,21 @@ ffs_declare_local_pkg({{project_name}}
     charon
 )
 
+ffs_print_precheck_summary()
+ffs_make_pkgs_available()
+ffs_print_postcheck_summary()
+
+#TODO: check that jq exists before running this
+#It is annoying that jq is a dependency here...
+add_custom_target(
+    superbuild_compile_commands
+    ALL
+    COMMAND
+        rm -f ${CMAKE_BINARY_DIR}/compile_commands.json
+    COMMAND
+        find ${CMAKE_BINARY_DIR} -name compile_commands.json | xargs jq '.[]' | jq -s > ${CMAKE_BINARY_DIR}/compile_commands.json
+    BYPRODUCTS
+        ${CMAKE_BINARY_DIR}/compile_commands.json
+    WORKING_DIRECTORY
+        ${CMAKE_BINARY_DIR}
+)

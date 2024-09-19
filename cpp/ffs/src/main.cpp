@@ -1,5 +1,5 @@
 #include "{{project_name}}.hpp"
-#include <charon.hpp>
+#include <charon/charon.hpp>
 #include <cstdio>
 
 int
