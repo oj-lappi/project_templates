@@ -32,12 +32,12 @@ set(CMAKE_CXX_STANDARD 20)
 option(DEBUG_FFS "Debug the ffs build process" OFF)
 set(DOWNLOAD AUTO CACHE STRING
     "Policy for downloading dependencies, one of: NEVER, AUTO, ALWAYS")
-set_property(CACHE DOWNLOAD_POLICY PROPERTY STRINGS NEVER AUTO ALWAYS)
+set_property(CACHE DOWNLOAD PROPERTY STRINGS NEVER AUTO ALWAYS)
 
 set(UPDATE NEVER CACHE STRING
     "Policy for updating dependencies, one of: NEVER, ALWAYS."
     " ALWAYS is useful when working on a dependency at the same time (e.g. charon)")
-set_property(CACHE UPDATE_POLICY PROPERTY STRINGS NEVER ALWAYS)
+set_property(CACHE UPDATE PROPERTY STRINGS NEVER ALWAYS)
 
 #[=[ FFS BOILERPLATE ]=]
 
